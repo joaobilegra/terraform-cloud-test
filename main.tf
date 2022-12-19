@@ -17,22 +17,6 @@ provider "aws" {
 
 }
 
-resource "aws_instance" "ubuntu" {
-  ami                         = "ami-04505e74c0741db8d"
-  instance_type               = "t3.micro"
-  key_name                    = aws_key_pair.ec2_key.key_name
-  subnet_id                   = module.vpc.public_subnets[0]
-  vpc_security_group_ids      = ["${aws_security_group.ssh_public.id}", "${aws_security_group.icmp.id}"]
-  private_ip                  = "192.168.0.21"
-  associate_public_ip_address = true
-  tags = {
-    Name = "gerencia"
-
-  }
-
-}
-
-
 resource "aws_instance" "ubuntu2" {
   ami                         = "ami-04505e74c0741db8d"
   instance_type               = "t3.micro"
